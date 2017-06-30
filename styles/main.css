@@ -1,0 +1,270 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:100,400,700');
+
+* {
+  margin: 0;
+  padding: 0;
+  font-size: 1.1em;
+  font-family: 'Montserrat', sans-serif;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #eee;
+}
+
+header {
+  position: fixed;
+  width: 100%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+  z-index: 1;
+}
+
+.carat {
+  display: inline-block;
+  margin-left: 4px;
+  margin-right: 10px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 10px 5px 0 5px;
+  border-color: #fff transparent transparent transparent;
+}
+
+.main-search-box {
+  height: 84px;
+  padding: 25px;
+  background-color: crimson;
+  color: white;
+}
+
+.main-search-box input {
+  border: 0;
+  border-bottom: 2px solid white;
+  background-color: crimson;
+  color: white;
+  transition: all .4s ease;
+}
+
+.main-search-box input:focus {
+  outline: none;
+  border-bottom: 4px solid white;
+}
+
+.media-select-menu {
+  display: none;
+  position: absolute;
+  background-color: crimson;
+  color: white;
+  top: 54px;
+  left: 56px;
+  padding: 15px 25px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+}
+
+.media-select, .search-field {
+  display: inline;
+}
+
+.media-select, .media-type {
+  cursor: pointer;
+}
+
+.search-results {
+  padding: 115px 10px 10px 25px;
+}
+
+.preview {
+  display: inline-block;
+  position: relative;
+  background-color: white;
+  width: 200px;
+  height: 330px;
+  font-size: .7em;
+  padding: 10px;
+  margin: 0 10px 10px 0;
+  overflow:hidden;
+  transition: all .4s ease;
+  cursor: pointer;
+}
+
+.preview:hover {
+  box-shadow: 0 0 50px rgba(0, 0, 0, .3);
+}
+
+.preview img {
+  max-width: 180px;
+  max-height: 270px;
+}
+
+.preview p {
+  position: absolute;
+  top: 286px;
+}
+
+.item-detail {
+  position: fixed;
+  overflow: scroll;
+}
+
+.smoke {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .3);
+  z-index: 20;
+}
+
+.item-detail {
+  display: none;
+  position: fixed;
+  padding: 25px;
+  width: 90%;
+  max-width: 990px;
+  height: 90%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  box-shadow: 0 0 100px rgba(0, 0, 0, .4);
+  z-index: 30;
+}
+
+.item-detail-close {
+  position: fixed;
+  top: 30px;
+  right: 12px;
+  font-size: 4em;
+  line-height: 0;
+  font-weight: 100;
+  cursor: pointer;
+}
+
+.detail-image {
+  max-height: 100%;
+  max-width: 600px;
+  float:left;
+  margin-right: 25px;
+}
+
+.item-detail h1 {
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 10px;
+  margin-right: 23px; /* avoid colision with the close widget */
+}
+
+.item-detail p {
+  font-size: .9em;
+  margin-bottom: 15px;
+}
+
+@media screen and (max-width: 900px) {
+  .item-detail {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transform: unset;
+    overflow: scroll;
+  }
+
+  .detail-image {
+    height: unset;
+    max-width: 60%;
+  }
+
+  .item-detail h1 {
+    font-size: 1.5em;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .detail-image {
+    max-width: 40%;
+  }
+
+  .item-detail h1, .item-detail p {
+    margin-left: calc(40% + 25px);
+  }
+}
+
+@media screen and (max-width: 590px) {
+  html {
+    background-color: #ddd;
+  }
+  header {
+    position: unset;
+    box-shadow: unset;
+    font-size: 4vw;
+  }
+
+  #main-search-text {
+    width: 58vw;
+  }
+
+  .search-results {
+    padding-top: 25px;
+  }
+
+  .media-select {
+    display: block;
+    margin-bottom: 10px;
+  }
+  .media-select-menu {
+    z-index: 10;
+  }
+
+  .main-search-box {
+    height: calc(20vw + 32px);
+  }
+
+  .item-detail-close {
+    position: absolute;
+    right: 19px;
+  }
+
+  .detail-image {
+    max-width: 100%;
+    padding-top: 35px;
+    padding-bottom: 22px;
+  }
+
+  .item-detail h1, .item-detail p {
+    margin-left: 0;
+  }
+}
+
+@media screen and (max-width: 454px) {
+  .search-results {
+    padding-right: 25px;
+  }
+
+  .preview {
+    display: block;
+    width: 100%;
+    height: unset;
+  }
+
+  .preview img {
+    float: left;
+    margin-right: 10px;
+  }
+
+  .preview p {
+    position: unset;
+    /*font-size: 1.4em;*/
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .search-results {
+    padding: 10px;
+  }
+}

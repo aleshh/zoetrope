@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Search MediaHound for movies, books, and games" />
+
+  <title>Zoetrope</title>
+  <!-- <link rel="stylesheet" href="styles/reset.css"> -->
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+
+  <header>
+    <div class="media-select-menu">
+      <div class="media-type" id="movie">movie</div>
+      <div class="media-type" id="book">book</div>
+      <div class="media-type" id="game">game</div>
+    </div>
+    <div class="main-search-box">
+      <div class="media-select">
+        <span class="media-select-text">movie</span><span class="carat"></span>
+      </div>
+      <div class="search-field">
+        <label for="">search:</label>
+        <input type="text" id="main-search-text" autofocus>
+      </div>
+    </div>
+  </header>
+
+  <main class="search-results" id="results"></main>
+
+  <main class="item-detail" id="detail">
+    <div class="item-detail-close">×</div>
+  </main>
+
+  <div class="smoke"></div>
+
+  <script src="js/hound.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
