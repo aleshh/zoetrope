@@ -24,6 +24,7 @@ $(function() {
     // clear results and search box
     $results.html('');
     defaultResults();
+
     $('#main-search-text').val('').focus();
 
   });
@@ -188,25 +189,49 @@ $(function() {
 
       if (followedLink) {
 
-        // not sure if MH has a way to test if an mhid is valid
-        // this is a working but ugly substitute
+        if(followedLink.slice(0,6) == 'search') {
 
-        try {
-          houndjs.MHObject.fetchByMhid(followedLink)
-            .then(function(response) {
-              defaultResults();
-              displayDetail(followedLink);
-            });
-        }
+          switch(followedLink.slice(7,8)) {
+            case 'm':
+              scope = 'movie';
+              followedLink = followedLink.slice(13);
+              break;
+            case 'b':
+              scope = 'book';
+              followedLink = followedLink.slice(12);
+              break;
+            case 'g':
+              scope = 'game';
+              followedLink = followedLink.slice(12);
+              break;
+          }
 
-        // if the URL hash isn't a valid MHID, we'll treat it as a search term;
-        // that way if it's a mangled MHID they'll get an error message anyway
-        catch(error) {
-
+          $('.media-select-text').text(scope);
           $('#main-search-text').val(followedLink);
           searchMh(followedLink);
-        }
 
+
+        } else {
+
+          // not sure if MH has a way to test if an mhid is valid
+          // this is a working but ugly substitute
+
+          try {
+            houndjs.MHObject.fetchByMhid(followedLink)
+              .then(function(response) {
+                defaultResults();
+                displayDetail(followedLink);
+              });
+          }
+
+          // if the URL hash isn't a valid MHID, we'll treat it as a search term;
+          // that way if it's a mangled MHID they'll get an error message anyway
+          catch(error) {
+
+            $('#main-search-text').val(followedLink);
+            searchMh(followedLink);
+          }
+        }
       } else {
         defaultResults();
       }
@@ -216,11 +241,11 @@ $(function() {
         var entry = $(this).val();
 
         if (entry) {
-          location = "#" + entry;
+          location = '#' + 'search-' + scope + '-' + entry;
           currentSearch = entry;
           searchMh(entry);
         } else {
-          location = '';
+          // location = '';
           defaultResults();
         }
       });
