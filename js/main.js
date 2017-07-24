@@ -33,7 +33,6 @@ $(function() {
   // Functions for working with MH API
   //
 
-  // generate year from releaseDate property
   var releaseYear = function(releaseDate) {
     if (!releaseDate) return null;
 
@@ -134,8 +133,9 @@ $(function() {
               } else {
                 title = relationship.contribution + ': ';
               }
-              $current.html(title + '<a href="#">' +
-                            contributor.object.metadata.name + '</a>');
+              $current.html(title + contributorLink(contributor.object.metadata.name));
+              // $current.html(title + '<a href="#">' +
+              //               contributor.object.metadata.name + '</a>');
               $current.appendTo($itemDetail);
 
             }
@@ -159,6 +159,15 @@ $(function() {
 
       location = '#' + mhid;
   };
+
+  var contributorLink = function(name) {
+    var context = '#' + 'search-' + scope + '-';
+    var link = '<a href="'+ context + name +'">';
+    // changing all the spaces to nonbreaking
+    link += name.replace(/\s/g, '&nbsp;');
+    link += '</a>';
+    return link;
+  }
 
   var searchMh = function(entry) {
     houndjs.MHSearch.fetchResultsForSearchTerm(entry, [scope], 20)
