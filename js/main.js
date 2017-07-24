@@ -119,8 +119,10 @@ $(function() {
           contributor.context.relationships.forEach(function(relationship) {
             if (relationship.contribution == 'Cast') {
 
+              var actor = '<a href="#">';
               // changing all the spaces to nonbreaking
-              var actor = contributor.object.metadata.name.replace(/\s/g, '&nbsp;');
+              actor += contributor.object.metadata.name.replace(/\s/g, '&nbsp;');
+              actor += '</a>';
               cast.push(actor);
             } else {
 
@@ -132,7 +134,8 @@ $(function() {
               } else {
                 title = relationship.contribution + ': ';
               }
-              $current.text(title + contributor.object.metadata.name);
+              $current.html(title + '<a href="#">' +
+                            contributor.object.metadata.name + '</a>');
               $current.appendTo($itemDetail);
 
             }

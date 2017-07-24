@@ -164,6 +164,14 @@ header {
   margin-bottom: 15px;
 }
 
+.item-detail a {
+  color: black;
+}
+
+.item-detail a:hover {
+  color: blue;
+}
+
 @media screen and (max-width: 900px) {
   .item-detail {
     width: 100%;
