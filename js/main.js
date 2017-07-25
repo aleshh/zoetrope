@@ -147,7 +147,7 @@ $(function() {
 
           event.preventDefault();
 
-          $('.item-detail').hide();
+          $('.item-detail').hide().html('<div class="item-detail-close">×</div>');
           $('.smoke').hide();
 
 
