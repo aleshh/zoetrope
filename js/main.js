@@ -118,11 +118,12 @@ $(function() {
           contributor.context.relationships.forEach(function(relationship) {
             if (relationship.contribution == 'Cast') {
 
-              var actor = '<a href="#">';
-              // changing all the spaces to nonbreaking
-              actor += contributor.object.metadata.name.replace(/\s/g, '&nbsp;');
-              actor += '</a>';
-              cast.push(actor);
+              // var actor = '<a href="#">';
+              // // changing all the spaces to nonbreaking
+              // actor += contributor.object.metadata.name.replace(/\s/g, '&nbsp;');
+              // actor += '</a>';
+              // cast.push(actor);
+              cast.push(contributorLink(contributor.object.metadata.name));
             } else {
 
               var $current = $('<p>').addClass('contributor');
@@ -166,8 +167,12 @@ $(function() {
     // changing all the spaces to nonbreaking
     link += name.replace(/\s/g, '&nbsp;');
     link += '</a>';
+
+    $link = $(link);
+    console.log('link:  ' + link);
+    console.log('$link: ' + $link);
     return link;
-  }
+  };
 
   var searchMh = function(entry) {
     houndjs.MHSearch.fetchResultsForSearchTerm(entry, [scope], 20)
