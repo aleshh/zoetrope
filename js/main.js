@@ -117,12 +117,6 @@ $(function() {
         response.keyContributors.forEach(function(contributor) {
           contributor.context.relationships.forEach(function(relationship) {
             if (relationship.contribution == 'Cast') {
-
-              // var actor = '<a href="#">';
-              // // changing all the spaces to nonbreaking
-              // actor += contributor.object.metadata.name.replace(/\s/g, '&nbsp;');
-              // actor += '</a>';
-              // cast.push(actor);
               cast.push(contributorLink(contributor.object.metadata.name));
             } else {
 
@@ -138,7 +132,6 @@ $(function() {
               // $current.html(title + '<a href="#">' +
               //               contributor.object.metadata.name + '</a>');
               $current.appendTo($itemDetail);
-
             }
           });
         });
@@ -148,6 +141,22 @@ $(function() {
           var wholeCast = 'Cast: ' + cast.join(', ');
           $('<p>').html(wholeCast).appendTo($itemDetail);
         }
+
+        $('.contributor-link').on('click', function(event) {
+          console.log('click:' + this.id);
+
+          event.preventDefault();
+
+          $('.item-detail').hide();
+          $('.smoke').hide();
+
+
+          var entry = this.id;
+          location = '#' + 'search-' + scope + '-' + entry;
+          currentSearch = entry;
+          $('#main-search-text').val(entry);
+          searchMh(entry);
+        });
 
         // event handler for close (click X or background)
         $('.item-detail-close').add($('.smoke')).on('click', function() {
@@ -163,14 +172,16 @@ $(function() {
 
   var contributorLink = function(name) {
     var context = '#' + 'search-' + scope + '-';
-    var link = '<a href="'+ context + name +'">';
-    // changing all the spaces to nonbreaking
-    link += name.replace(/\s/g, '&nbsp;');
+    var link = '<a ';
+    link += 'href="' + context + name +'" ';
+    link += 'id="' + name + '" ';
+    link += 'class="contributor-link"';
+    link += '>';
+    link += name.replace(/\s/g, '&nbsp;'); // make spaces nonbreaking
     link += '</a>';
 
-    $link = $(link);
-    console.log('link:  ' + link);
-    console.log('$link: ' + $link);
+    console.log('link: ' + link);
+
     return link;
   };
 
